@@ -1,3 +1,14 @@
+.ant-layout-header{
+  height:280px !important;
+  background:#FFF !important;
+  padding:30px !important;
+}
+.ant-menu.ant-menu-dark, .ant-menu-dark .ant-menu-sub, .ant-menu.ant-menu-dark .ant-menu-sub {
+  background:#FFF !important;
+}
+/* .ant-menu-item .ant-menu-item-only-child .ant-menu-item-selected{
+  color:#F3712A !important;
+} */
 .App {
   text-align: center;
 }
