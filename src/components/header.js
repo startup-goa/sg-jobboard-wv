@@ -1,14 +1,16 @@
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
-import { Layout, Menu, Image, Form, Input, Button, Modal,Row, Col,Slider } from 'antd';
+import { Layout, Menu, Image, Form, Input, Button, Modal,Row, Col,Slider,Select } from 'antd';
 import StartupGoaLogo from '../assets/StartupGoaLogo.png'
 import { Link } from 'react-router-dom';
 import React, { useState ,useEffect} from 'react';
-
+const { Option } = Select;
 const { Header } = Layout;
 
 function Mainheader() {
   const [visible, setvisible] = useState(false);
   const [menukey, setmenukey] = useState('1');
+  const [jobtype, setjobtype] = useState('2');
+
   const [form] = Form.useForm();
   const [requiredMark, setRequiredMarkType] = useState(true);
 
@@ -50,14 +52,21 @@ const marks = {
   const showModal = () => {
     setvisible(true)
   };
+  function handleChange(value) {
+    setjobtype(value)
+  
+}
   const handleOk = () => {
     let payload={
       title:form.getFieldValue('title'),
-      type:form.getFieldValue('type'),
+      type:jobtype,
       location:form.getFieldValue('location'),
+      region:form.getFieldValue('region'),
+      phone:form.getFieldValue('phoneno'),
       desc:form.getFieldValue('description'),
       category:form.getFieldValue('category'),
-      salary:form.getFieldValue('salary'),
+      salarymin:form.getFieldValue('salary')[0],
+      salarymax:form.getFieldValue('salary')[1]
     }
     console.log(payload)
     setvisible(false)
@@ -126,20 +135,38 @@ const marks = {
       requiredMark={requiredMark}
     >
     <Form.Item label="Job title" name="title" required >
-        <Input placeholder="What is the job / role" />
-      </Form.Item>
+      <Input placeholder="What is the job / role" />
+    </Form.Item>
       <Row gutter={8}>
-      <Col span={12}>
-       <Form.Item label="Job type" name="type" required >
-        <Input placeholder="Freelance, Full-time, Internship, Part-time" />
-      </Form.Item>
-      </Col>
+        <Col span={12}>
+        <Form.Item label="Job type" name="type" required >
+          <Select defaultValue={jobtype} style={{ width: 120 }} >
+            <Option value="1">Freelance</Option>
+            <Option value="2">Full-time</Option>
+            <Option value="3">Internship</Option>
+            <Option value="4">Part-time</Option>
+          </Select>
+          </Form.Item>
+        </Col>
       <Col span={12}>
       <Form.Item label="Location" name="location" required >
         <Input placeholder="Arpora, Colva, Saligao.." />
       </Form.Item>
        </Col>
         </Row>
+        <Row gutter={8}>
+        <Col span={12}>
+        <Form.Item label="Phone no" name="phoneno" required >
+          <Input placeholder="8007385851" />
+          </Form.Item>
+        </Col>
+      <Col span={12}>
+      <Form.Item label="Region" name="region" required >
+        <Input placeholder="north goa, south goa.." />
+      </Form.Item>
+       </Col>
+        </Row>
+
        <Form.Item label="Job category" name="category" required >
         <Input placeholder="Development, management.." />
       </Form.Item>
@@ -147,7 +174,7 @@ const marks = {
         <Input.TextArea placeholder="Give an overview of whar is the job about and role & responsibility" />
       </Form.Item>
       <Form.Item label="Salary range (per annum)" name="salary" required > 
-          <Slider marks={marks} step={10} defaultValue={5} /> 
+          <Slider range marks={marks} step={10} defaultValue={[5, 15]} /> 
       </Form.Item> 
     </Form>
       </Modal>
