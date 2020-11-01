@@ -128,55 +128,55 @@ const marks = {
         }
       >
         <Form
-      form={form}
-      layout="vertical"
-      initialValues={{ requiredMark }}
-      onValuesChange={onRequiredTypeChange}
-      requiredMark={requiredMark}
-    >
-    <Form.Item label="Job title" name="title" required >
-      <Input placeholder="What is the job / role" />
-    </Form.Item>
-      <Row gutter={8}>
-        <Col span={12}>
-        <Form.Item label="Job type" name="type" required >
-          <Select defaultValue={jobtype} style={{ width: 120 }} >
-            <Option value="1">Freelance</Option>
-            <Option value="2">Full-time</Option>
-            <Option value="3">Internship</Option>
-            <Option value="4">Part-time</Option>
-          </Select>
-          </Form.Item>
-        </Col>
-      <Col span={12}>
-      <Form.Item label="Location" name="location" required >
-        <Input placeholder="Arpora, Colva, Saligao.." />
-      </Form.Item>
-       </Col>
-        </Row>
+        form={form}
+        layout="vertical"
+        initialValues={{ requiredMark }}
+        onValuesChange={onRequiredTypeChange}
+        requiredMark={requiredMark}
+        >
+        <Form.Item label="Job title" name="title" required >
+          <Input placeholder="What is the job / role" />
+        </Form.Item>
         <Row gutter={8}>
-        <Col span={12}>
-        <Form.Item label="Phone no" name="phoneno" required >
-          <Input placeholder="8007385851" />
+          <Col span={12}>
+          <Form.Item label="Job type" name="type" required >
+            <Select defaultValue={jobtype} style={{ width: 120 }} >
+              <Option value="1">Freelance</Option>
+              <Option value="2">Full-time</Option>
+              <Option value="3">Internship</Option>
+              <Option value="4">Part-time</Option>
+            </Select>
+            </Form.Item>
+          </Col>
+         <Col span={12}>
+          <Form.Item label="Location" name="location" required >
+            <Input placeholder="Arpora, Colva, Saligao.." />
           </Form.Item>
         </Col>
-      <Col span={12}>
-      <Form.Item label="Region" name="region" required >
-        <Input placeholder="north goa, south goa.." />
-      </Form.Item>
-       </Col>
-        </Row>
+          </Row>
+          <Row gutter={8}>
+            <Col span={12}>
+            <Form.Item label="Phone no" name="phoneno" required >
+              <Input placeholder="8007385851" />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item label="Region" name="region" required >
+                <Input placeholder="north goa, south goa.." />
+              </Form.Item>
+            </Col>
+          </Row>
 
-       <Form.Item label="Job category" name="category" required >
-        <Input placeholder="Development, management.." />
-      </Form.Item>
-       <Form.Item label="Job description" name="description" required >
-        <Input.TextArea placeholder="Give an overview of whar is the job about and role & responsibility" />
-      </Form.Item>
-      <Form.Item label="Salary range (per annum)" name="salary" required > 
-          <Slider range marks={marks} step={10} defaultValue={[5, 15]} /> 
-      </Form.Item> 
-    </Form>
+        <Form.Item label="Job category" name="category" required >
+          <Input placeholder="Development, management.." />
+        </Form.Item>
+        <Form.Item label="Job description" name="description" required >
+          <Input.TextArea placeholder="Give an overview of whar is the job about and role & responsibility" />
+        </Form.Item>
+        <Form.Item label="Salary range (per annum)" name="salary" required > 
+            <Slider range marks={marks} step={10} defaultValue={[5, 15]} /> 
+        </Form.Item> 
+      </Form>
       </Modal>
     </Header>
 
