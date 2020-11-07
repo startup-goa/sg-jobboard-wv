@@ -55,8 +55,6 @@ function GetData(props) {
   const handleCancel = () => {
     setvisible(false)
   };
-<<<<<<< Updated upstream
-=======
  
    const submitForm = (formData) =>{
     console.log(formData)
@@ -69,7 +67,6 @@ function GetData(props) {
         // resolve(response.data.jobsList);
     })
   }
->>>>>>> Stashed changes
 
   let jobData=props.jobData || []
   let companyData=props.companyData || []
