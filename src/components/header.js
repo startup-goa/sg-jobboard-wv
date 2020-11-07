@@ -3,6 +3,7 @@ import { Layout, Menu, Image, Form, Input, Button, Modal,Row, Col,Slider,Select 
 import StartupGoaLogo from '../assets/StartupGoaLogo.png'
 import { Link } from 'react-router-dom';
 import React, { useState ,useEffect} from 'react';
+import axios from 'axios';
 const { Option } = Select;
 const { Header } = Layout;
 
@@ -60,6 +61,7 @@ const marks = {
     let payload={
       title:form.getFieldValue('title'),
       type:jobtype,
+      email:form.getFieldValue('email'),
       location:form.getFieldValue('location'),
       region:form.getFieldValue('region'),
       phone:form.getFieldValue('phoneno'),
@@ -68,6 +70,12 @@ const marks = {
       salarymin:form.getFieldValue('salary')[0],
       salarymax:form.getFieldValue('salary')[1]
     }
+     axios.get('api/company?email='+payload.email)
+        .then(function (response) {
+          console.log(response.data)
+          //setData(response.data.jobsList)
+           // resolve(response.data.jobsList);
+        })
     console.log(payload)
     setvisible(false)
   };
@@ -92,12 +100,12 @@ const marks = {
     <Col span={24}>
       <Row>
         <Col span={2} style={navItemStyle}>
-          <Link to="/jobs">
+          <Link to="/" activeStyle={{ color: "#F3712A" }}>
             <img  height={50} src={StartupGoaLogo}/>
           </Link>
         </Col>
         <Col span={1} style={navItemStyle}>
-          <Link to="/findjobs" activeStyle={{ color: "#F3712A" }}>
+          <Link to="/jobs" activeStyle={{ color: "#F3712A" }}>
              Jobs
           </Link>
         </Col>
@@ -134,6 +142,9 @@ const marks = {
         onValuesChange={onRequiredTypeChange}
         requiredMark={requiredMark}
         >
+        <Form.Item label="Email" name="email" required >
+          <Input placeholder="Enter email ID" />
+        </Form.Item>
         <Form.Item label="Job title" name="title" required >
           <Input placeholder="What is the job / role" />
         </Form.Item>

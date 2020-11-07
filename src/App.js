@@ -17,9 +17,9 @@ export default function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-          <Redirect to='/findjobs' />
+          <Redirect to='/jobs' />
         </Route>
-        <FindJobs path="/findjobs" component={FindJobs} />
+        <FindJobs path="/jobs" component={FindJobs} />
         <ViewCompanyDetails path="/companies" component={ViewCompanyDetails} />
 
       </Switch>
