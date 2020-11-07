@@ -47,3 +47,13 @@
     transform: rotate(360deg);
   }
 }
+
+.ant-layout-footer{
+  position: fixed !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  background-color: #1890FF !important;
+  height: 10% !important;
+  padding: 16px !important;
+  color: white !important;
+}

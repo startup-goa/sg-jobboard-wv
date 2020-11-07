@@ -55,6 +55,21 @@ function GetData(props) {
   const handleCancel = () => {
     setvisible(false)
   };
+<<<<<<< Updated upstream
+=======
+ 
+   const submitForm = (formData) =>{
+    console.log(formData)
+     axios.post('http://192.168.1.116:3000/api/company/job/apply', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+    }).then(function (response) {
+      console.log(response.data);
+        // resolve(response.data.jobsList);
+    })
+  }
+>>>>>>> Stashed changes
 
   let jobData=props.jobData || []
   let companyData=props.companyData || []

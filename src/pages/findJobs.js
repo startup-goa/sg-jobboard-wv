@@ -15,7 +15,7 @@ function FindJobs() {
   const [jobData, setData] = useState([{}]);
   const [jobDetails, setjobDetails] = useState({})
   useEffect(() => {
-   axios.get('http://localhost:3000/api/company/jobs/?pageno=1&perpage=3')
+   axios.get('http://192.168.1.116:3000/api/company/jobs/?pageno=1&perpage=3')
         .then(function (response) {
           console.log(response.data.jobsList)
           setData(response.data.jobsList)
@@ -41,7 +41,7 @@ function FindJobs() {
         </Col>
         </Row>
       </Content>
-      <Footer style={{ textAlign: 'center' }}>Startup Goa ©2020</Footer>
+      <Footer  style={{ textAlign: 'center' }}>Startup Goa ©2020</Footer>
     </Layout>
   );
 }
