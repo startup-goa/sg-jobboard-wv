@@ -60,7 +60,7 @@ const marks = {
 }
 const submitJob = (auth) => {
   let payload={
-      jobTitle:form.getFieldValue('title'),
+      title:form.getFieldValue('title'),
       type:jobtype,
       email:form.getFieldValue('email'),
       location:form.getFieldValue('location'),
@@ -90,7 +90,7 @@ const submitJob = (auth) => {
 }
   const handleOk = () => {
     let payload={
-      jobTitle:form.getFieldValue('title'),
+      title:form.getFieldValue('title'),
       type:jobtype,
       email:form.getFieldValue('email'),
       location:form.getFieldValue('location'),
