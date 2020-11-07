@@ -1,7 +1,7 @@
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import {
   Layout, Menu, Image, Form, Input, Button, Modal,
-  Row, Col, Slider, Select, Card, Tag, Upload, message
+  Row, Col, Empty, Select, Card, Tag, Upload, message
 } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import axios from 'axios';
@@ -71,7 +71,7 @@ function GetData(props) {
   let jobData=props.jobData || []
   let companyData=props.companyData || []
   return (
-    (jobData.length) >0 ? 
+    jobData.length >0 ? 
       jobData.map(d => (
         <div className="pointer"
           onClick={()=>props.getJobDetails(d)}>
@@ -111,7 +111,7 @@ function GetData(props) {
         </div>
       ))
    
-    :(companyData.length) >0 ? 
+    :companyData.length >0 ? 
       companyData.map(d => (
         <div className="pointer"
           onClick={()=>props.getCompanyDetails(d)}>
@@ -145,7 +145,7 @@ function GetData(props) {
         </div>
       ))
    
-    :null
+    :<Empty />
     
     )
     

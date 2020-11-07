@@ -205,12 +205,12 @@ const submitJob = (auth) => {
         </Col>
         <Col span={1} style={navItemStyle}>
           <Link to="/jobs" activeStyle={{ color: "#F3712A" }}>
-             Jobs
+            Jobs
           </Link>
         </Col>
         <Col span={1} style={navItemStyle}>
           <Link to="/companies" activeStyle={{ color: "#F3712A" }}>
-             Companies
+            Companies
           </Link>
         </Col>
         <Col span={3} offset={17} >
