@@ -13,7 +13,7 @@ const { Content, Footer} = Layout;
 
 function FindJobs() {
   const [jobData, setData] = useState([{}]);
-
+  const [jobDetails, setjobDetails] = useState({})
   useEffect(() => {
    axios.get('http://localhost:3000/api/company/jobs/?pageno=1&perpage=3')
         .then(function (response) {
@@ -22,18 +22,22 @@ function FindJobs() {
            // resolve(response.data.jobsList);
         })
   }, [])
+  const getJobDetails=(details)=>{
+    console.log(details)
+    setjobDetails(details || {})
+  }
   return (
     <Layout className="layout">
       <Header />
 
       <Content style={{background: '#E5E5E5' }}>
-        <Row gutter={20}>
+        <Row gutter={17}>
         <Col span={7}>
-        <SideCardList data={jobData}/>
+        <SideCardList jobData={jobData} getJobDetails={getJobDetails}/>
         </Col>
         <Col span={10}>
        
-        <ContentBoard />
+        <ContentBoard jobDetails={jobDetails}/>
         </Col>
         </Row>
       </Content>
