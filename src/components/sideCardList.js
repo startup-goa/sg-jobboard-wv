@@ -58,7 +58,7 @@ function GetData(props) {
  
    const submitForm = (formData) =>{
     console.log(formData)
-     axios.post('http://192.168.1.116:3000/api/company/job/apply', formData, {
+     axios.post('api/company/job/apply', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }

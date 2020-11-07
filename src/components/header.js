@@ -15,7 +15,7 @@ function Mainheader() {
   const [openSignUp, setOpenSignup] = useState(false)
   const [form] = Form.useForm();
   const [requiredMark, setRequiredMarkType] = useState(true);
-
+  const [auth,setAuth]=useState('')
 const marks = {
   0: '1L',
   5: '2L',
@@ -58,9 +58,9 @@ const marks = {
     setjobtype(value)
   
 }
-  const handleOk = () => {
-    let payload={
-      title:form.getFieldValue('title'),
+const submitJob = (auth) => {
+  let payload={
+      jobTitle:form.getFieldValue('title'),
       type:jobtype,
       email:form.getFieldValue('email'),
       location:form.getFieldValue('location'),
@@ -71,30 +71,92 @@ const marks = {
       salarymin:form.getFieldValue('salary')[0],
       salarymax:form.getFieldValue('salary')[1]
     }
-     axios.get('api/company?email='+payload.email)
-        .then(function (response) {
-          console.log(response.data)
-          if(response.data.companyList.length===0){
-            setEmail(payload.email)
-            const formData = new FormData();
-            formData.append('email', payload.email);
-            formData.append('phoneNumber', payload.phone);
-            formData.append('password', 'test');
-            formData.append('companyUserName', payload.email);
-             formData.append('companyDispName', form.getFieldValue('company'));
+   // setAuth(null)
+   console.log(auth)
+    if(auth){
+      axios.post('api/company/job', payload, {
+                  headers: {
+                    'Content-Type': 'multipart/form-data',
+                    Authorization: 'Bearer '+auth 
+                  }
+            }).then(function (response) {
+                alert(response.data)
+                setvisible(false)
+                console.log(response.data);
+            })
+     
+    }
 
-            //formData.append('cv', 'bleh');
-            console.log(formData)
-
-            signUp(formData)
-            setOpenSignup(true)
-          }
-          //setData(response.data.jobsList)
-           // resolve(response.data.jobsList);
-        })
-    console.log(payload)
-    setvisible(false)
+}
+  const handleOk = () => {
+    let payload={
+      jobTitle:form.getFieldValue('title'),
+      type:jobtype,
+      email:form.getFieldValue('email'),
+      location:form.getFieldValue('location'),
+      region:form.getFieldValue('region'),
+      phone:form.getFieldValue('phoneno'),
+      desc:form.getFieldValue('description'),
+      category:form.getFieldValue('category'),
+      salarymin:form.getFieldValue('salary')[0],
+      salarymax:form.getFieldValue('salary')[1]
+    }
+   // setAuth(null)
+   console.log(auth)
+   /*  if(auth){
+      axios.post('api/company/job', payload, {
+                  headers: {
+                    'Content-Type': 'multipart/form-data',
+                    Authorization: 'Bearer'+auth 
+                  }
+            }).then(function (response) {
+              setAuth(null)
+                alert(response.data)
+                setvisible(false)
+                console.log(response.data);
+            })
+     
+    }else{ */
+      axios.get('api/company?email='+payload.email)
+          .then(function (response) {
+            console.log(response.data)
+            if(response.data.companyList.length===0){
+              setEmail(payload.email)
+              const formData = new FormData();
+              formData.append('email', payload.email);
+              formData.append('phoneNumber', payload.phone);
+              formData.append('password', 'test');
+              formData.append('companyUserName', payload.email);
+              formData.append('companyDispName', form.getFieldValue('company'));
+              console.log(formData)
+              signUp(formData)
+              setOpenSignup(true)
+            }else{
+              let loginPayload={
+                "username":form.getFieldValue('email'),
+                "password": 'test'
+              }
+              signIn(loginPayload)
+            }
+            //setData(response.data.jobsList)
+            // resolve(response.data.jobsList);
+          })
+    
+     // }
+    
   };
+  const signIn =(payload)=>{
+          
+            axios.post('api/company/auth/login', payload, {
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            }).then(function (response) {
+                submitJob(response.data.token)
+                //handleOk()
+                console.log(response.data.token);
+            })  
+  }
  const signUp = (formData) =>{
       console.log(formData)
       axios.post('api/company/auth/signup', formData, {
@@ -102,9 +164,19 @@ const marks = {
               'Content-Type': 'multipart/form-data'
             }
       }).then(function (response) {
-             
+           let loginPayload={
+              "username":form.getFieldValue('email'),
+              "password": 'test'
+            }
+            signIn(loginPayload)
            console.log(response.data);
-          // resolve(response.data.jobsList);
+      }).catch(function (err) {
+            //user sigded Up but not approved
+           let loginPayload={
+              "username":form.getFieldValue('email'),
+              "password": 'test'
+            }
+            signIn(loginPayload)
       })
     }
   const handleCancel = () => {
@@ -172,6 +244,7 @@ const marks = {
         <Form.Item label="Email" name="email" required >
           <Input placeholder="Enter email ID" />
         </Form.Item>
+       
         <Form.Item label="Company Name" name="company" required >
           <Input placeholder="Enter company name" />
         </Form.Item>
