@@ -55,23 +55,12 @@ function GetData(props) {
   const handleCancel = () => {
     setvisible(false)
   };
- 
-   const submitForm = (formData) =>{
-    console.log(formData)
-     axios.post('http://localhost:3000/api/company/job/apply', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-    }).then(function (response) {
-      console.log(response.data);
-        // resolve(response.data.jobsList);
-    })
-  }
 
-  let data=props.jobData || []
+  let jobData=props.jobData || []
+  let companyData=props.companyData || []
   return (
-    (data.length) >0 ? 
-      data.map(d => (
+    (jobData.length) >0 ? 
+      jobData.map(d => (
         <div className="pointer"
           onClick={()=>props.getJobDetails(d)}>
           <Card
@@ -105,23 +94,59 @@ function GetData(props) {
               </Col>
             </Row>
             <ApplyJob visible={visible} jobId={jobId} handleCancel={handleCancel}/>
+          </Card>
   
-          
+        </div>
+      ))
+   
+    :(companyData.length) >0 ? 
+      companyData.map(d => (
+        <div className="pointer"
+          onClick={()=>props.getCompanyDetails(d)}>
+          <Card
+            style={{ marginTop: 8, marginLeft: 5 }}
+            type="inner"
+  
+          >
+            <Row gutter={20}>
+              <Col className="gutter-row" span={16}>
+                <div style={{ fontWeight: 600, fontSize: 18 }}>
+                  {d.companyDispName}
+                </div>
+                <div style={{ fontSize: 14 }}>
+                  {d.phoneNumber}
+                </div>
+                <div style={{ fontSize: 14 }}>
+                  {d.website}
+                </div>
+              </Col>
+  
+              <Col className="gutter-row" span={4}>
+                <div style={{ paddingBottom: 10 }}>
+                  <Tag color="blue">{d.tagline}</Tag>
+                </div>
+              </Col>
+            </Row>
+            <ApplyJob visible={visible} jobId={jobId} handleCancel={handleCancel}/>
           </Card>
   
         </div>
       ))
    
     :null
+    
     )
+    
 }
 function SideCardList(props) {
   console.log('data1', props)
 
   return (
     <div style={{ width: '400px' }}>
-      <GetData jobData={props.jobData} getJobDetails={props.getJobDetails}/>
-
+      <GetData 
+              jobData={props.jobData} getJobDetails={props.getJobDetails}
+              companyData={props.companyData} getCompanyDetails={props.getCompanyDetails}
+      />
     </div>
   );
 }
