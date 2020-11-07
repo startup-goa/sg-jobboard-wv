@@ -13,7 +13,7 @@ function ViewCompanyDetails() {
   const [companyData, setCompanyData] = useState([{}]);
   const [companyDetails, setCompanyDetails] = useState({})
   useEffect(() => {
-   axios.get('http://localhost:3000/api/company')
+   axios.get('api/company')
         .then(function (response) {
           console.log(response.data)
           setCompanyData(response.data.companyList)

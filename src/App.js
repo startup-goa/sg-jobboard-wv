@@ -5,7 +5,10 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import Department from './department'; */
 import ViewCompanyDetails from '../src/pages/viewCompanyDetails';
 import FindJobs from '../src/pages/findJobs';
+import axios from 'axios';
+import config from './config.json'
 
+axios.defaults.baseURL = config.BASE_URL;
 export default function App() {
 
 

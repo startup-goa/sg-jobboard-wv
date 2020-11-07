@@ -6,7 +6,6 @@ import SideCardList from '../components/sideCardList'
 import ContentBoard from '../components/content'
 import axios from 'axios';
 import * as React from 'react';
-
 const { useState, useEffect } = React;
 
 const { Content, Footer} = Layout;
@@ -15,7 +14,7 @@ function FindJobs() {
   const [jobData, setData] = useState([{}]);
   const [jobDetails, setjobDetails] = useState({})
   useEffect(() => {
-   axios.get('http://192.168.1.116:3000/api/company/jobs/?pageno=1&perpage=3')
+   axios.get('api/company/jobs/?pageno=1&perpage=3')
         .then(function (response) {
           console.log(response.data.jobsList)
           setData(response.data.jobsList)
