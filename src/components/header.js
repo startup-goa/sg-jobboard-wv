@@ -92,18 +92,18 @@ const marks = {
     <Col span={24}>
       <Row>
         <Col span={2} style={navItemStyle}>
-          <Link to="/">
+          <Link to="/jobs">
             <img  height={50} src={StartupGoaLogo}/>
           </Link>
         </Col>
         <Col span={1} style={navItemStyle}>
-          <Link to="/events" activeStyle={{ color: "#F3712A" }}>
-            Event
+          <Link to="/findjobs" activeStyle={{ color: "#F3712A" }}>
+             Jobs
           </Link>
         </Col>
         <Col span={1} style={navItemStyle}>
-          <Link to="/spaces" activeStyle={{ color: "#F3712A" }}>
-            Spaces
+          <Link to="/companies" activeStyle={{ color: "#F3712A" }}>
+             Companies
           </Link>
         </Col>
         <Col span={3} offset={17} >
