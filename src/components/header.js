@@ -1,4 +1,4 @@
-import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+//import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import { Layout, Menu, Image, Form, Input, Button, Modal,Row, Col,Slider,Select } from 'antd';
 import StartupGoaLogo from '../assets/StartupGoaLogo.png'
 import { Link } from 'react-router-dom';
@@ -79,42 +79,42 @@ const marks = {
   const redirect = (key) => {
     setmenukey(key.toString())
   }
+  const navItemStyle = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  }
   return (
   //const { getFieldDecorator } = this.props.form;
 
-    <Header>
-
-      <Menu theme="light"
-        mode="horizontal"
-        defaultSelectedKeys={[menukey]}
-        onClick={(key) => redirect(key)}
-
-      >
-        <Image
-          width={80}
-          src={StartupGoaLogo}
-        />
-        <Menu.Item key="1">
+  <div style={{ background: "white", padding: "8px 0", marginBottom: 24 }}>
+  <Row>
+    <Col span={24}>
+      <Row>
+        <Col span={2} style={navItemStyle}>
           <Link to="/">
-            <span>Find Jobs</span>
+            <img  height={50} src={StartupGoaLogo}/>
           </Link>
-        </Menu.Item>
-        <Menu.Item key="2">
-          <Link to="/companies">
-            <span>Companies</span>
+        </Col>
+        <Col span={1} style={navItemStyle}>
+          <Link to="/events" activeStyle={{ color: "#F3712A" }}>
+            Event
           </Link>
-        </Menu.Item>
-        <Menu.Item key="3">Blog</Menu.Item>
-
-        <Button style={{ float: 'right' }} type="primary"
-          onClick={showModal}>
-          POST A JOB
-          </Button>
-      </Menu>
-
-      <div style={{ fontSize: 42, fontWeight: '600', paddingTop: 50, textAlign: 'center' }}>
-        Goa’s go-to job portal for tech
-      </div>
+        </Col>
+        <Col span={1} style={navItemStyle}>
+          <Link to="/spaces" activeStyle={{ color: "#F3712A" }}>
+            Spaces
+          </Link>
+        </Col>
+        <Col span={3} offset={17} >
+        <Button  style={{marginTop: 6}} type="primary"
+        onClick={showModal}>
+        POST A JOB
+        </Button>
+        </Col>
+      </Row>
+    </Col>
+  </Row>
 
       <Modal
         visible={visible}
@@ -178,8 +178,7 @@ const marks = {
         </Form.Item> 
       </Form>
       </Modal>
-    </Header>
-
+    </div>
 
   );
 }

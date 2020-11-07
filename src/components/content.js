@@ -1,6 +1,7 @@
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import { Col, Card, Image,Row,Button } from 'antd';
 import StartupGoaLogo from '../assets/StartupGoaLogo.png'
+import location from '../assets/location.svg'
 import ApplyJob from '../components/applyJob'
 
 import * as React from 'react';
@@ -95,16 +96,31 @@ function GetContent(props) {
       style={{ marginTop: 8, marginLeft: 5, paddingBottom: 300 }}
       type="inner"
     >
+    
+
+
     <Row gutter={20}>
         <Col className="gutter-row" >
-          <Image
+        <Row>
+        <Col>
+        <Image
             width={100}
             src={StartupGoaLogo}
             />
+        </Col>
+        <Image
+            src={location}
+        />
+        </Row>
+          
+            
           </Col>
           <Col className="gutter-row" span={6}>
             <div style={{ fontWeight: 600, fontSize: 24 }}>
                 {companyData.companyDispName}
+            </div>
+            <div>
+            
             </div>
             <div style={{ fontSize: 14 }}>
               <a href={companyData.website}>{companyData.companyDispName}</a>
