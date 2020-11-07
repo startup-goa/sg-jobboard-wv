@@ -105,7 +105,7 @@ function GetData(props) {
                 </div>
               </Col>
             </Row>
-            <ApplyJob visible={visible} jobId={jobId} handleCancel={handleCancel}/>
+            <ApplyJob visible={visible} jobId={d.jobid} handleCancel={handleCancel}/>
           </Card>
   
         </div>

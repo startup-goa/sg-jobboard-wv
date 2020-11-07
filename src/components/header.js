@@ -11,7 +11,8 @@ function Mainheader() {
   const [visible, setvisible] = useState(false);
   const [menukey, setmenukey] = useState('1');
   const [jobtype, setjobtype] = useState('2');
-
+  const [email, setEmail] = useState('')
+  const [openSignUp, setOpenSignup] = useState(false)
   const [form] = Form.useForm();
   const [requiredMark, setRequiredMarkType] = useState(true);
 
@@ -73,13 +74,39 @@ const marks = {
      axios.get('api/company?email='+payload.email)
         .then(function (response) {
           console.log(response.data)
+          if(response.data.companyList.length===0){
+            setEmail(payload.email)
+            const formData = new FormData();
+            formData.append('email', payload.email);
+            formData.append('phoneNumber', payload.phone);
+            formData.append('password', 'test');
+            formData.append('companyUserName', payload.email);
+             formData.append('companyDispName', form.getFieldValue('company'));
+
+            //formData.append('cv', 'bleh');
+            console.log(formData)
+
+            signUp(formData)
+            setOpenSignup(true)
+          }
           //setData(response.data.jobsList)
            // resolve(response.data.jobsList);
         })
     console.log(payload)
     setvisible(false)
   };
-
+ const signUp = (formData) =>{
+      console.log(formData)
+      axios.post('api/company/auth/signup', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+      }).then(function (response) {
+             
+           console.log(response.data);
+          // resolve(response.data.jobsList);
+      })
+    }
   const handleCancel = () => {
     setvisible(false)
   };
@@ -144,6 +171,9 @@ const marks = {
         >
         <Form.Item label="Email" name="email" required >
           <Input placeholder="Enter email ID" />
+        </Form.Item>
+        <Form.Item label="Company Name" name="company" required >
+          <Input placeholder="Enter company name" />
         </Form.Item>
         <Form.Item label="Job title" name="title" required >
           <Input placeholder="What is the job / role" />

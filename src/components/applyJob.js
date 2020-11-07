@@ -1,7 +1,7 @@
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import {
   Layout, Menu, Image, Form, Input, Button, Modal,
-  Row, Col, Slider, Select, Card, Tag, Upload, message
+  Row, Col, Slider, Select, Card, Tag, Upload, message,Alert
 } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import axios from 'axios';
@@ -78,7 +78,8 @@ function ApplyJob(props) {
               'Content-Type': 'multipart/form-data'
             }
       }).then(function (response) {
-        console.log(response.data);
+          alert(response.data)    
+           console.log(response.data);
           // resolve(response.data.jobsList);
       })
     }
